@@ -180,6 +180,8 @@ class Response
      * @param string $url to redirect to
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function redirect($url)
     {
