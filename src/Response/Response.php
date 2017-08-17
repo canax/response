@@ -4,7 +4,6 @@ namespace Anax\Response;
 
 /**
  * Handling a response.
- *
  */
 class Response
 {
@@ -186,5 +185,6 @@ class Response
     {
         $this->checkIfHeadersAlreadySent();
         header("Location: " . $url);
+        exit;
     }
 }
