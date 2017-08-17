@@ -5,6 +5,7 @@ v1.0.6 (2017-08-17)
 ---------------------------------
 
 * Do exit after redirect().
+* Add utility methods through ResponseUtility.
 
 
 v1.0.5 (2017-04-12)
