@@ -1,9 +1,10 @@
 Revision history
 =================================
 
-v1.0.7* (2017-08-17)
+v1.0.7 (2017-09-11)
 ---------------------------------
 
+* Add status codes 400, 405, 501, 418.
 * Ignore phpmd exit expression in Response::redirect().
 
 
