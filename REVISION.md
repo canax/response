@@ -7,6 +7,7 @@ v1.0.8 (2017-10-15)
 
 * Return self from most methods, partly to ease unittesting in controllers.
 * Refactor sendJson() to use send().
+* Allow sending null to setStatsuCode() and ignore it.
 
 
 v1.0.7 (2017-09-11)

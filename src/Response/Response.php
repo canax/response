@@ -43,9 +43,14 @@ class Response
      */
     public function setStatusCode($value)
     {
+        if (is_null($value)) {
+            return $this;
+        }
+
         if (!array_key_exists($value, $this->validStatusCode)) {
             throw new Exception("Unsupported statuscode: $value");
         }
+
         $this->statusCode = $value;
         return $this;
     }
@@ -150,9 +155,7 @@ class Response
      */
     public function send($statusCode = null)
     {
-        if ($statusCode) {
-            $this->setStatusCode($statusCode);
-        }
+        $this->setStatusCode($statusCode);
 
         if (!headers_sent()) {
             $this->sendHeaders();
@@ -174,9 +177,25 @@ class Response
      */
     public function sendJson($data, $statusCode = null)
     {
+        return $this->setStatusCode($statusCode)
+                    ->setJsonBody($data)
+                    ->send();
+    }
+
+
+
+    /**
+     * Set body with JSON data.
+     *
+     * @param mixed $data to be encoded as json.
+     *
+     * @return self
+     */
+    public function setJsonBody($data)
+    {
         $this->addHeader("Content-Type: application/json; charset=utf8");
         $this->setBody(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        return $this->send($statusCode);
+        return $this;
     }
 
 
