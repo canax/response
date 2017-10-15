@@ -58,6 +58,18 @@ class Response
 
 
     /**
+     * Get status code to be sent as part of headers.
+     *
+     * @return integer value as status code or null if not set.
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+
+
+    /**
      * Set headers.
      *
      * @param string $header type of header to set
