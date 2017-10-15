@@ -73,7 +73,8 @@ class Response
 
 
     /**
-     * Check if headers are already sent and throw exception if it is.
+     * Check if headers are already sent and throw exception if it has,
+     * but ignore when running in cli mode.
      *
      * @return void
      *
@@ -81,7 +82,7 @@ class Response
      */
     public function checkIfHeadersAlreadySent()
     {
-        if (headers_sent($file, $line)) {
+        if (php_sapi_name() !== 'cli' && headers_sent($file, $line)) {
             throw new Exception("Try to send headers but headers already sent, output started at $file line $line.");
         }
     }
