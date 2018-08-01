@@ -2,10 +2,12 @@
 
 namespace Anax\Response;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Test response module.
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends TestCase
 {
     /**
      * Try setting various status codes.

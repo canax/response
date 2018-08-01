@@ -2,10 +2,12 @@
 
 namespace Anax\Response;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Fail test response module.
  */
-class ResponseFailTest extends \PHPUnit_Framework_TestCase
+class ResponseFailTest extends TestCase
 {
     /**
      * Test.
