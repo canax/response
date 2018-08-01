@@ -10,7 +10,7 @@ Anax Response
 [![Code Coverage](https://scrutinizer-ci.com/g/canax/response/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/canax/response/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eeb9a3c9-f094-41db-9633-1197e2e8e43e/mini.png)](https://insight.sensiolabs.com/projects/eeb9a3c9-f094-41db-9633-1197e2e8e43e)
 
-Anax Response moduler.
+Anax Response module.
 
 
 
