@@ -234,7 +234,7 @@ class ResponseTest extends TestCase
     // public function testRedirect()
     // {
     //     $resp = new Response();
-    // 
+    //
     //     $resp->redirect("/");
     // }
 }
