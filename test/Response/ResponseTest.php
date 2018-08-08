@@ -10,19 +10,34 @@ use \PHPUnit\Framework\TestCase;
 class ResponseTest extends TestCase
 {
     /**
-     * Try setting various status codes.
+     * Provider status codes.
      */
-    public function testStatusCodes()
+    public function statusCodesProvider()
     {
-        $resp = new Response();
-        $resp->setStatusCode(200);
-        $resp->setStatusCode(400);
-        $resp->setStatusCode(403);
-        $resp->setStatusCode(404);
-        $resp->setStatusCode(405);
-        $resp->setStatusCode(418);
-        $resp->setStatusCode(500);
-        $resp->setStatusCode(501);
+        return [
+            [200],
+            [400],
+            [403],
+            [404],
+            [405],
+            [500],
+            [501],
+        ];
+    }
+
+
+
+    /**
+     * Try setting various status codes.
+     *
+     * @dataProvider statusCodesProvider
+     */
+    public function testStatusCodes($code)
+    {
+        $res = new Response();
+        $res->setStatusCode($code);
+        $result = $res->getStatusCode();
+        $this->assertEquals($code, $result);
     }
 
 

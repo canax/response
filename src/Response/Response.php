@@ -13,42 +13,22 @@ class Response
     * @var array $body       body to send with response.
     */
     private $headers = [];
-    private $statusCode;
+    private $statusCode = null;
     private $body;
-
-
-
-    /**
-     * @var array $validStatusCode these status codes are supported.
-     */
-    private $validStatusCode = [
-        "200" => "HTTP/1.1 200 OK",
-        "400" => "HTTP/1.1 400 Bad Request",
-        "403" => "HTTP/1.1 403 Forbidden",
-        "404" => "HTTP/1.1 404 Not Found",
-        "405" => "HTTP/1.1 405 Method Not Allowed",
-        "418" => "HTTP/1.1 418 I'm a teapot",
-        "500" => "HTTP/1.1 500 Internal Server Error",
-        "501" => "HTTP/1.1 501 Not Implemented",
-    ];
 
 
 
     /**
      * Set status code to be sent as part of headers.
      *
-     * @param string $header type of header to set
+     * @param int $value of response status code
      *
      * @return self
      */
-    public function setStatusCode($value)
+    public function setStatusCode(int $value = null)
     {
         if (is_null($value)) {
             return $this;
-        }
-
-        if (!array_key_exists($value, $this->validStatusCode)) {
-            throw new Exception("Unsupported statuscode: $value");
         }
 
         $this->statusCode = $value;
@@ -110,9 +90,7 @@ class Response
     {
         $this->checkIfHeadersAlreadySent();
 
-        if (isset($this->statusCode)) {
-            header($this->validStatusCode[$this->statusCode]);
-        }
+        http_response_code($this->statusCode);
 
         foreach ($this->headers as $header) {
             header($header);
@@ -135,6 +113,8 @@ class Response
     {
         if (is_string($body)) {
             $this->body = $body;
+        } elseif (is_array($body)) {
+            $this->setJsonBody($body);
         } elseif (is_callable($body)) {
             ob_start();
             $res1 = call_user_func($body);
@@ -160,14 +140,32 @@ class Response
 
 
     /**
-     * Send response with an optional statuscode.
+     * Send response supporting varios ways of response $data.
      *
-     * @param integer $statusCode optional statuscode to send.
+     * @param mixed $data to use as optional base for creating response.
      *
      * @return self
      */
-    public function send($statusCode = null)
+    public function send($data = null)
     {
+        $statusCode = null;
+
+        if ($data instanceof self) {
+            return $data->send();
+        }
+
+        if (is_string($data)) {
+            $this->setBody($data);
+        }
+
+        if (is_array($data) && isset($data[0])) {
+            $this->setBody($data[0]);
+        }
+
+        if (is_array($data) && isset($data[1]) && is_numeric($data[1])) {
+            $statusCode = $data[1];
+        }
+
         $this->setStatusCode($statusCode);
 
         if (!headers_sent()) {
@@ -209,23 +207,5 @@ class Response
         $this->addHeader("Content-Type: application/json; charset=utf8");
         $this->setBody(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         return $this;
-    }
-
-
-
-    /**
-     * Redirect to another page.
-     *
-     * @param string $url to redirect to
-     *
-     * @return void
-     *
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
-    public function redirect($url)
-    {
-        $this->checkIfHeadersAlreadySent();
-        header("Location: " . $url);
-        exit;
     }
 }

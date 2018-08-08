@@ -9,13 +9,14 @@ use \PHPUnit\Framework\TestCase;
  */
 class ResponseFailTest extends TestCase
 {
-    /**
-     * Test.
-     * @expectedException \Anax\Response\Exception
-     */
-    public function testStatusCode()
-    {
-        $resp = new Response();
-        $resp->setStatusCode(-1);
-    }
+    // /**
+    //  * Can only set a predefined number of status codes.
+    //  *
+    //  * @expectedException \Anax\Response\Exception
+    //  */
+    // public function testStatusCode()
+    // {
+    //     $resp = new Response();
+    //     $resp->setStatusCode(-1);
+    // }
 }
