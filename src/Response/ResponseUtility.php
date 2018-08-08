@@ -2,16 +2,16 @@
 
 namespace Anax\Response;
 
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 
 /**
  * Handling a response and includes utilitie methods.
  */
 class ResponseUtility extends Response implements
-    InjectionAwareInterface
+    ContainerInjectableInterface
 {
-    use InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 

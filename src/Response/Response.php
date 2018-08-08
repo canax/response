@@ -65,35 +65,22 @@ class Response
 
 
     /**
-     * Check if headers are already sent and throw exception if it has,
-     * but ignore when running in cli mode.
-     *
-     * @return void
-     *
-     * @throws Exception
-     */
-    public function checkIfHeadersAlreadySent()
-    {
-        if (php_sapi_name() !== 'cli' && headers_sent($file, $line)) {
-            throw new Exception("Try to send headers but headers already sent, output started at $file line $line.");
-        }
-    }
-
-
-
-    /**
      * Send headers.
      *
      * @return self
      */
     public function sendHeaders()
     {
-        $this->checkIfHeadersAlreadySent();
+        if (php_sapi_name() !== "cli" && headers_sent($file, $line)) {
+            throw new Exception("Try to send headers but headers already sent, output started at $file line $line.");
+        }
 
         http_response_code($this->statusCode);
 
         foreach ($this->headers as $header) {
-            header($header);
+            if (php_sapi_name() !== "cli") {
+                header($header);
+            }
         }
 
         return $this;
@@ -207,5 +194,24 @@ class Response
         $this->addHeader("Content-Type: application/json; charset=utf8");
         $this->setBody(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         return $this;
+    }
+
+
+
+    /**
+     * Redirect to another page.
+     *
+     * @param string $url to redirect to
+     *
+     * @return void
+     *
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
+    public function redirect($url)
+    {
+        if (!headers_sent()) {
+            header("Location: " . $url);
+            exit;
+        }
     }
 }
