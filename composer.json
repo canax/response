@@ -25,8 +25,7 @@
         "php": "^7.2"
     },
     "suggest": {
-        "anax/commons": "^2.0.0@alpha",
-        "anax/di": "^2.0.0@alpha"
+        "anax/commons": "^2.0.0@alpha"
     },
     "require-dev": {
         "anax/commons": "^2.0.0@alpha",
