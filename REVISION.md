@@ -2,7 +2,14 @@ Revision history
 =================================
 
 
-v2.0.0-alpha.5 (2018-08-08)
+v2.0.0-alpha.7 (2018-08-09)
+---------------------------------
+
+* Enhance unit tests.
+
+
+
+v2.0.0-alpha.6 (2018-08-08)
 ---------------------------------
 
 * Add $di config file config/di/response.php.
