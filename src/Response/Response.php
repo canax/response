@@ -127,7 +127,7 @@ class Response
 
 
     /**
-     * Send response supporting varios ways of response $data.
+     * Send response supporting several ways of receiving response $data.
      *
      * @param mixed $data to use as optional base for creating response.
      *
