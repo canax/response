@@ -2,6 +2,14 @@ Revision history
 =================================
 
 
+
+v2.0.0-beta.3 (2018-09-10)
+---------------------------------
+
+* Rewrite Response::redirect to use Response-class and not header().
+
+
+
 v2.0.0-beta.2 (2018-09-10)
 ---------------------------------
 
