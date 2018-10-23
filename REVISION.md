@@ -3,6 +3,13 @@ Revision history
 
 
 
+v2.0.0-beta.4 (2018-10-23)
+---------------------------------
+
+* Update Response::redirect to return self to allow chaining and allow user to directly call send().
+
+
+
 v2.0.0-beta.3 (2018-09-10)
 ---------------------------------
 

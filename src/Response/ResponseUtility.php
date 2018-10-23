@@ -20,11 +20,11 @@ class ResponseUtility extends Response implements
      *
      * @param string $url to redirect to
      *
-     * @return void
+     * @return self
      */
-    public function redirect($url)
+    public function redirect(string $url) : object
     {
-        parent::redirect($this->di->get("url")->create($url));
+        return parent::redirect($this->di->get("url")->create($url));
     }
 
 
@@ -32,11 +32,11 @@ class ResponseUtility extends Response implements
     /**
      * Redirect to current page.
      *
-     * @return void
+     * @return self
      */
-    public function redirectSelf()
+    public function redirectSelf() : object
     {
         $url = $this->di->get("request")->getCurrentUrl();
-        parent::redirect($this->di->get("url")->create($url));
+        return parent::redirect($this->di->get("url")->create($url));
     }
 }

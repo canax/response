@@ -203,11 +203,12 @@ class Response
      *
      * @param string $url to redirect to
      *
-     * @return void
+     * @return self
      */
-    public function redirect($url)
+    public function redirect(string $url) : object
     {
         $this->addHeader("Location: " . $url);
         $this->body = null;
+        return $this;
     }
 }
