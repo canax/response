@@ -13,7 +13,7 @@ class ResponseUtilityTest extends TestCase
     /**
      * A $di container.
      */
-    static private $di;
+    private static $di;
 
 
 
