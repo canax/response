@@ -65,6 +65,18 @@ class Response
 
 
     /**
+     * Get all headers.
+     *
+     * @return array with headers
+     */
+    public function getHeaders() : array
+    {
+        return $this->headers;
+    }
+
+
+
+    /**
      * Send headers.
      *
      * @return self
