@@ -3,6 +3,13 @@ Revision history
 
 
 
+v2.0.2 (2020-10-27)
+---------------------------------
+
+* Add method addFile to let user download a file.
+
+
+
 v2.0.1 (2019-11-13)
 ---------------------------------
 
